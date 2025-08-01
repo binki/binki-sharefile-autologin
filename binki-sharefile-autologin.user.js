@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name binki-sharefile-autologin
-// @version 1.0.0
+// @version 1.0.1
 // @match https://auth.sharefile.io/*
 // @require https://github.com/binki/binki-userscript-when-element-query-selector-async/raw/0a9c204bdc304a9e82f1c31d090fdfdf7b554930/binki-userscript-when-element-query-selector-async.js
 // @require https://github.com/binki/binki-userscript-when-input-completed/raw/19b92186c42958221c62d0cf1171e2655e7a7514/binki-userscript-when-input-completed.js
