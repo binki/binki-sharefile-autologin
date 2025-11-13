@@ -28,8 +28,12 @@
 })();
 // Authenticator entry.
 (async () => {
-  const iTrustThisComputerInput = await whenElementQuerySelectorAsync(document.body, '#mfa-phone-code-form_trustThisDevice');
+  const iTrustThisComputerInput = await whenElementQuerySelectorAsync(document.body, '#enter-code-form_remember');
   if (!iTrustThisComputerInput.checked) iTrustThisComputerInput.click();
-  await whenInputCompletedAsync(await whenElementQuerySelectorAsync(document.body, '#code'));
-  document.querySelector('[data-testid=SubmitButton]').click();
+  // The verification code entry is separated out into multiple inputs, so the traditional whenInputCompletedAsync() approach
+  // doesn’t work. To make things faster for the user, simply monitor the last of those inputs and advance when it has
+  // any value placed in it. Note that we cannot use the input events for this because the site’s own copy-paste support
+  // sets the value programmatically without firing the appropriate input event. Thus require a value using the selector.
+  await whenElementQuerySelectorAsync(document.body, '#verification-code > span:last-child > input[value]:not([value=""])');
+  document.querySelector('[data-testid=verifyCodeButton]').click();
 })();
